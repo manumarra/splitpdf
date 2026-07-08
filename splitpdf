@@ -1,0 +1,9 @@
+#!/bin/sh
+# Wrapper eseguibile per splitPdf.py
+# Usa la virtualenv .venv se presente, altrimenti python3 di sistema
+ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
+if [ -x "$ROOT_DIR/.venv/bin/python" ]; then
+  exec "$ROOT_DIR/.venv/bin/python" "$ROOT_DIR/splitPdf.py" "$@"
+else
+  exec python3 "$ROOT_DIR/splitPdf.py" "$@"
+fi
